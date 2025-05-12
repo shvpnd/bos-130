@@ -3,7 +3,8 @@
 
 #define MAX_TASKS 4
 
-typedef struct {
+typedef struct
+{
     void (*function)(void);
     int active;
 } Task;
@@ -11,5 +12,6 @@ typedef struct {
 void task_init();
 void task_create(void (*func)(void));
 void task_switch();
+void task_yield();
 
 #endif
