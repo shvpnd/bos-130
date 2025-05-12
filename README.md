@@ -1,6 +1,8 @@
 # BOS-130
 A simple operating system built for the Raspberry Pi Pico (RP2040), implementing a shell, file system, and system utilities.
 
+![Screenshot_2025-05-12_14-38-07](https://github.com/user-attachments/assets/106c3630-fbc0-4965-920e-396f4734dd5f)
+
 ### Features
 
 - **Basic Shell:**  Commands like `ls`, `mkdir`, `cd`, `touch`
@@ -11,7 +13,7 @@ A simple operating system built for the Raspberry Pi Pico (RP2040), implementing
 
 1. Clone this repository:
     ```bash
-    git clone https://github.com/yourusername/bos-130.git
+    git clone https://github.com/shvpnd/bos-130.git
     cd bos-130
     ```
 
