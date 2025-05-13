@@ -19,7 +19,9 @@ add_executable(${PROJECT_NAME}
     src/console.c
     src/syscall.c
     src/shell.c
-    src/task.c 
+    src/task.c
+    src/fs.c
+    src/fetch.c
 )
 
 # Include your header files

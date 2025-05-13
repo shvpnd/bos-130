@@ -27,6 +27,13 @@ void task_create(void (*func)(void))
     }
 }
 
+void task_exit()
+{
+    console_print("Task System: Task exiting\n");
+    tasks[current_task].active = 0; // mark task as inactive
+    task_switch();                  // switch to next active task
+}
+
 void task_yield()
 {
     task_switch();
@@ -47,9 +54,10 @@ void task_switch()
             return;
         }
 
-        //prevent infinite loop if no tasks are active
+        // prevent infinite loop if no tasks are active
         if (current_task == start_task)
         {
+            console_print("Task System: No active tasks!\n");
             break;
         }
     }

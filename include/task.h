@@ -11,7 +11,8 @@ typedef struct
 
 void task_init();
 void task_create(void (*func)(void));
-void task_switch();
 void task_yield();
+void task_exit();
+void task_switch();
 
 #endif

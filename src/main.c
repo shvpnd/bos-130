@@ -3,16 +3,35 @@
 #include "task.h"
 #include "shell.h"
 #include "console.h"
+#include "syscall.h"
 
 void blink_task()
 {
+    static int count = 0;
+
     console_print("Task: Blinking LED ON\n");
     gpio_put(25, 1);
     sleep_ms(500);
     console_print("Task: Blinking LED OFF\n");
     gpio_put(25, 0);
     sleep_ms(500);
-    task_yield();
+    console_print("Task: Blinking LED ON\n");
+    gpio_put(25, 1);
+    sleep_ms(500);
+    console_print("Task: Blinking LED OFF\n");
+    gpio_put(25, 0);
+    sleep_ms(500);
+
+    count++;
+    if (count < 5)
+    {
+        syscall_handler(SYS_YIELD, NULL);
+    }
+    else
+    {
+        console_print("Task: Blink task exiting...\n");
+        syscall_handler(SYS_EXIT, NULL);
+    }
 }
 
 void shell_task()

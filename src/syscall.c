@@ -19,7 +19,12 @@ void syscall_handler(int syscall, const char *arg)
         gpio_put(25, 0);
         break;
     case SYS_YIELD:
-        task_yield(); // allowing tasks to yield via syscall
+        console_print("Syscall: Task yielding...\n");
+        task_yield();
+        break;
+    case SYS_EXIT:
+        console_print("Syscall: Task exiting...\n");
+        task_exit();
         break;
     default:
         console_print("Syscall: Unknown syscall\n");
