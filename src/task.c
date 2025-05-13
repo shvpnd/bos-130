@@ -21,7 +21,7 @@ void task_create(void (*func)(void))
         {
             tasks[i].function = func;
             tasks[i].active = 1;
-            console_print("Task created\n");
+            console_print("Task System: Task created\n");
             return;
         }
     }
@@ -35,14 +35,22 @@ void task_yield()
 void task_switch()
 {
     int start_task = current_task;
-    do
+
+    while (1)
     {
         current_task = (current_task + 1) % MAX_TASKS;
-    } while (!tasks[current_task].active && current_task != start_task);
 
-    if (tasks[current_task].active)
-    {
-        console_print("Task System: Switching task\n");
-        tasks[current_task].function();
+        if (tasks[current_task].active)
+        {
+            console_print("Task System: Switching task\n");
+            tasks[current_task].function();
+            return;
+        }
+
+        //prevent infinite loop if no tasks are active
+        if (current_task == start_task)
+        {
+            break;
+        }
     }
 }
